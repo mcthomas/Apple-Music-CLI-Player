@@ -41,6 +41,9 @@ if (( curr < 2 || init == 1 )); then
 	else 
 		art=$(clear; viu ~/Library/Scripts/tmp.jpg -w 39 -h 13)
 	fi
+	cyan=$(echo -e '\e[00;36m')
+	green=$(echo -e '\e[00;32m')
+	nocolor=$(echo -e '\033[0m')
 fi
 vol=$(echo $(awk -F ':|,' '{print $2}' <<< $vol))
 if [ $vol = 0 ]; then
@@ -61,6 +64,6 @@ progressBars='▇▇▇▇▇▇▇▇▇'
 percentRemain=$(( (curr * 100) / end / 10 ))
 progBG=${progressBars:$percentRemain} 
 prog=${progressBars:0:$percentRemain} 
-paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $(echo $currMin:$currSec '\e[00;36m'${prog}'\033[0m'${progBG} $endMin:$endSec)" "$volIcon $(echo "\e[0;32m$vol\033[0m$volBG")")
+paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${green}$vol${nocolor}$volBG")")
 sleep 1
 done
