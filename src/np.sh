@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 init=1
 while :
 do
@@ -37,12 +37,12 @@ if (( curr < 2 || init == 1 )); then
 	rm ~/Library/Scripts/tmp*
 	osascript ~/Library/Scripts/album-art.applescript
 	if [ -f ~/Library/Scripts/tmp.png ]; then
-		art=$(clear; viu ~/Library/Scripts/tmp.png -w 39 -h 13)
+		art=$(clear; viu ~/Library/Scripts/tmp.png -w 39 -h 15)
 	else 
-		art=$(clear; viu ~/Library/Scripts/tmp.jpg -w 39 -h 13)
+		art=$(clear; viu ~/Library/Scripts/tmp.jpg -w 39 -h 15)
 	fi
 	cyan=$(echo -e '\e[00;36m')
-	green=$(echo -e '\e[00;32m')
+	magenta=$(echo -e '\033[01;35m')
 	nocolor=$(echo -e '\033[0m')
 fi
 vol=$(echo $(awk -F ':|,' '{print $2}' <<< $vol))
@@ -57,13 +57,13 @@ if [ $shuffle = 'false' ]; then
 else
 	shuffleIcon=🔀
 fi
-volBars='▁▂▃▄▅▆▇█'
+volBars='▁▂▃▄▅▆▇'
 volBG=${volBars:$vol}
 vol=${volBars:0:$vol}
 progressBars='▇▇▇▇▇▇▇▇▇'
 percentRemain=$(( (curr * 100) / end / 10 ))
 progBG=${progressBars:$percentRemain} 
 prog=${progressBars:0:$percentRemain} 
-paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${green}$vol${nocolor}$volBG")")
-sleep 1
+paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")")
+break
 done

@@ -11,7 +11,6 @@ then
 	osascript -e 'on run argv
 		tell application "Music" to play playlist (item 1 of argv)
 	end' "$*"
-	np
 elif [ $1 = "-s" ] 
 then
 	if [ "$#" -eq 1 ]; then
@@ -23,7 +22,6 @@ then
 osascript -e 'on run argv
 	tell application "Music" to play track (item 1 of argv)
 end' "$*"
-np
 elif [ $1 = "-r" ] 
 then
 	if [ "$#" -eq 1 ]; then
@@ -33,7 +31,6 @@ then
 		shift
 	fi
 	osascript -e 'on run argv' -e 'tell application "Music"' -e 'if (exists playlist "temp_playlist") then' -e 'delete playlist "temp_playlist"' -e 'end if' -e 'set name of (make new playlist) to "temp_playlist"' -e 'set theseTracks to every track of playlist "Library" whose album is (item 1 of argv)' -e 'repeat with thisTrack in theseTracks' -e 'duplicate thisTrack to playlist "temp_playlist"' -e 'end repeat' -e 'play playlist "temp_playlist"' -e 'end tell' -e 'end' "$*"
-	np
 elif [ $1 = "-a" ] 
 then
 	if [ "$#" -eq 1 ]; then
@@ -43,5 +40,4 @@ then
 		shift
 	fi
 	osascript -e 'on run argv' -e 'tell application "Music"' -e 'if (exists playlist "temp_playlist") then' -e 'delete playlist "temp_playlist"' -e 'end if' -e 'set name of (make new playlist) to "temp_playlist"' -e 'set theseTracks to every track of playlist "Library" whose artist is (item 1 of argv)' -e 'repeat with thisTrack in theseTracks' -e 'duplicate thisTrack to playlist "temp_playlist"' -e 'end repeat' -e 'play playlist "temp_playlist"' -e 'end tell' -e 'end' "$*"
-	np
 fi
