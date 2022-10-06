@@ -1,5 +1,18 @@
 #!/bin/sh
-input=$2
+usage="Usage: listen.sh [-grouping] [-name]
+  -s              Fzf for a song and begin playback.
+  -s PATTERN      Play the song PATTERN.
+  -r              Fzf for a record and begin playback.
+  -r PATTERN      Play from the record PATTERN.
+  -a              Fzf for an artist and begin playback.
+  -a PATTERN      Play from the artist PATTERN.
+  -p              Fzf for a playlist and begin playback.
+  -p PATTERN      Play from the playlist PATTERN.
+  -g              Fzf for a genre and begin playback.
+  -g PATTERN      Play from the genre PATTERN."
+if [ "$#" -eq 0 ]; then
+	echo $usage
+else
 if [ $1 = "-p" ]
 then
 	if [ "$#" -eq 1 ]; then
@@ -49,4 +62,7 @@ then
 		shift
 	fi
 	osascript -e 'on run argv' -e 'tell application "Music"' -e 'if (exists playlist "temp_playlist") then' -e 'delete playlist "temp_playlist"' -e 'end if' -e 'set name of (make new playlist) to "temp_playlist"' -e 'set theseTracks to every track of playlist "Library" whose genre is (item 1 of argv)' -e 'repeat with thisTrack in theseTracks' -e 'duplicate thisTrack to playlist "temp_playlist"' -e 'end repeat' -e 'play playlist "temp_playlist"' -e 'end tell' -e 'end' "$*"
+else
+	echo $usage
+fi
 fi

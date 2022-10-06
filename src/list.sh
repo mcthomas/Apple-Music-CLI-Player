@@ -1,5 +1,17 @@
 #!/bin/sh
-input=$2
+usage="Usage: list.sh [-grouping] [-name]
+  -s              List all songs.
+  -r              List all records.
+  -r PATTERN      List all songs in the record PATTERN.
+  -a              List all artists.
+  -a PATTERN      List all songs by the artist PATTERN.
+  -p              List all playlists.
+  -p PATTERN      List all songs in the playlist PATTERN.
+  -g              List all genres.
+  -g PATTERN      List all songs in the genre PATTERN."
+if [ "$#" -eq 0 ]; then
+	echo -e $usage
+else
 if [ $1 = "-p" ]
 then
 	if [ "$#" -eq 1 ]; then
@@ -15,7 +27,7 @@ then
 		shift
 		osascript -e 'on run args' -e 'tell application "Music" to get name of every track' -e 'end' "$*" | tr "," "\n" | sort | awk '!seen[$0]++' | pr -T -a -3  
 	else
-		exit
+		echo $usage
 	fi
 elif [ $1 = "-r" ] 
 then
@@ -44,6 +56,7 @@ then
 		shift
 		osascript -e 'on run args' -e 'tell application "Music" to get name of every track whose genre is (item 1 of args)' -e 'end' "$*" | tr "," "\n" | sort | awk '!seen[$0]++' | pr -T -a -3
 	fi
-
+else
+	echo $usage
 fi
-
+fi

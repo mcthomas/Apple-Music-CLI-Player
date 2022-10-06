@@ -67,3 +67,4 @@ prog=${progressBars:0:$percentRemain}
 paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")")
 sleep .5
 done
+echo; echo "Usage: np.sh (Music.app track must be actively playing or paused)"
