@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 init=1
 while :
 do
-vol=$(osascript -e 'get volume settings')
-shuffle=$(osascript -e 'tell application "Music" to get shuffle enabled')
+	vol=$(osascript -e 'get volume settings')
+	shuffle=$(osascript -e 'tell application "Music" to get shuffle enabled')
 duration=$(osascript -e 'tell application "Music" to get {player position} & {duration} of current track')
 arr=(`echo ${duration}`)
 curr=$(cut -d . -f 1 <<< ${arr[-2]})
@@ -65,6 +65,13 @@ percentRemain=$(( (curr * 100) / end / 10 ))
 progBG=${progressBars:$percentRemain} 
 prog=${progressBars:0:$percentRemain} 
 paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")")
-sleep .5
+input=$(bash -c "read -n 1 -t .5 input; echo \$input | xargs")
+if [[ "${input}" == *"s"* ]]; then
+	if $shuffle ; then
+		osascript -e 'tell application "Music" to set shuffle enabled to false'	
+	else
+		osascript -e 'tell application "Music" to set shuffle enabled to true'
+	fi
+fi
 done
 echo; echo "Usage: np.sh (Music.app track must be actively playing or paused)"
