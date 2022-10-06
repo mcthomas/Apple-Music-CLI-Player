@@ -65,5 +65,5 @@ percentRemain=$(( (curr * 100) / end / 10 ))
 progBG=${progressBars:$percentRemain} 
 prog=${progressBars:0:$percentRemain} 
 paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")")
-break
+sleep .5
 done
