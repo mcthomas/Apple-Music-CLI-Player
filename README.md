@@ -1,13 +1,12 @@
 # Apple Music TUI
 
-*Compatible with bash, zsh.  
-I recommend aliasing am.sh to `alias am=zsh path/to/script`, or moving its three individual functions into your .bashrc or .zshrc.*
+*Compatible with bash, zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
 ### Now Playing (np)
 
 <img src="np.png" width="400"/>
 
-Enjoy a simple "Now Playing" widget from your terminal.  Uses standard Unix tooling/piping, Applescript for interfacing with Apple Music, and [Viu](https://github.com/atanunq/viu) for displaying the album art images.
+Enjoy a simple "Now Playing" widget from your terminal.  Uses standard Unix tooling/piping, AppleScript for interfacing with Apple Music, and [Viu](https://github.com/atanunq/viu) for displaying the album art images.
 
 Dependencies: [Viu](https://github.com/atanunq/viu), [Doug's album-art.applescript](https://dougscripts.com/itunes/2014/10/save-current-tracks-artwork/)
 
@@ -24,7 +23,7 @@ Notes:
 
 ### Play
 
-Begin playback of different song groupings or a specific song grouping in your library. The song grouping type is dictated by the flag you pass.  By calling play without specifying a title after the flag, you are prompted to select a title of that flag's collection type on the fly via [fzf](https://github.com/junegunn/fzf). Unfortunately there is no simple way to play, for example, a specific album or songs from a specific artist with Applescript, but I was able to modify code shared by a "jccc" [here](https://discussions.apple.com/thread/1053355), as a workaround which involves automatically creating a single temporary playlist in your library that is utilized by play().
+Begin playback of different song groupings or a specific song grouping in your library. The song grouping type is dictated by the flag you pass.  By calling play without specifying a title after the flag, you are prompted to select a title of that flag's collection type on the fly via [fzf](https://github.com/junegunn/fzf). Unfortunately there is no simple way to play, for example, a specific album or songs from a specific artist with AppleScript, but I was able to modify code shared by a "jccc" [here](https://discussions.apple.com/thread/1053355), as a workaround which involves automatically creating a single temporary playlist in your library that is utilized by play().
 
 Dependencies: [fzf](https://github.com/junegunn/fzf) (unless you always play groupings by name)
 
@@ -42,7 +41,7 @@ Usage: am.sh [function] [-grouping] [-name]
   play -g PATTERN       Play from the genre PATTERN.
   play -l               Play from your entire library.
 ```
-Example: `play -a In Rainbows` (not case-sensitive)
+Example: `am play -a In Rainbows` (not case-sensitive)
 
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `play` is called
@@ -65,7 +64,7 @@ Usage: [function] [-grouping] [-name]
   list -g               List all genres.
   list -g PATTERN       List all songs in the genre PATTERN.
 ```
-Example: `list -a In Rainbows` (not case-sensitive)
+Example: `am list -a In Rainbows` (not case-sensitive)
 
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `list` is called
