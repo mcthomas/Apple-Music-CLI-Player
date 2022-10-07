@@ -74,9 +74,9 @@ Notes:
 
 Error: `execution error: Music got an error: Application isn’t running. (-600)`
 
-Solution: Reboot.  It seems to occur occasionally after having had Music.app open for too long while your Mac has slept.
+Solution: Reboot. It seems to occur occasionally after having had Music.app open for too long while your Mac has slept. Other potential solutions can be found [here](https://stackoverflow.com/questions/19957268/applescript-fails-with-error-600-when-launched-over-ssh-on-mavericks)
 
 ### Ideas For Improvement
 
 * This could be expanded with functions that call new AppleScript snippets to create, delete, or refine playlists
-* See the Script Editor.app's dictionary API for an exhaustive reference for all the Music.app variables and functions that can be interfaced via AppleScript
+* See the Script Editor.app's dictionary API for an exhaustive reference of all the Music.app variables and functions that can be interfaced via AppleScript
