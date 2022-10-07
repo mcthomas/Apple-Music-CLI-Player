@@ -25,7 +25,7 @@ Notes:
 
 List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
 
-Usage: [function] [-grouping] [-name]
+Usage: `[function] [-grouping] [-name]`
 ```
   list -s               List all songs in your library.
   list -r               List all records.
