@@ -1,6 +1,6 @@
 # Apple Music TUI
 
-*Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
+*Tested only on macOS 12 (likely to work on macOS 10.15, 11 as well).  Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
 ## Now Playing (np)
 
@@ -49,7 +49,7 @@ Begin playback of different song groupings or a specific song grouping in your l
 
 Dependencies: [fzf](https://github.com/junegunn/fzf) (unless you always play groupings by name)
 
-Usage: am.sh [function] [-grouping] [-name]
+Usage: `am [function] [-grouping] [-name]`
 ```
   play -s               Fzf for a song and begin playback.
   play -s PATTERN       Play the song PATTERN.
@@ -69,6 +69,28 @@ Notes:
 * Music.app does not need to be open or closed; it should launch itself silently when `play` is called
 * Only works on tracks saved to your Library (but they do not need to be downloaded)
 * calling `-p Library` will result in quite a delay, unlike `-l`, because it requires copying all the songs in your library into the temporary playlist
+
+### Optional AirPlay Snippet (not in src)
+
+Toggle the Music.app AirPlay audio output for a specific device. 
+
+Configuration: 
+* Adjust the device strings to a device hostname of your choosing
+* Ideally adapt the argument name to match
+
+```
+if [ $1 = "-atv" ]
+   then
+    isActive=$(osascript -e 'tell application "Music" to get selected of AirPlay device "Apple TV"')
+    if [ $isActive = 'false' ]
+    then
+      osascript -e 'tell application "Music" to set selected of AirPlay device "Apple TV" to true'
+    else
+      osascript -e 'tell application "Music" to set selected of AirPlay device "Apple TV" to false'
+  fi
+fi
+```
+Example: `zsh ap.sh -atv`
 
 ### Known Problems
 
