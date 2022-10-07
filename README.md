@@ -1,6 +1,6 @@
 # Apple Music TUI
 
-*Compatible with bash, zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
+*Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
 ### Now Playing (np)
 
@@ -20,6 +20,28 @@ Usage: `am np` (pressing `s` at any time will toggle shuffle)
 Notes: 
 * A song must be actively playing or paused for it to launch
 * Scrubbing, pausing, resuming, as well as navigating forward and backward in the queue can already be accomplished with the special function keys / touch bar, so I did not see a good reason to map keys to additional AppleScript snippets as I did for toggling shuffle
+
+### List
+
+List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
+
+Usage: [function] [-grouping] [-name]
+```
+  list -s               List all songs in your library.
+  list -r               List all records.
+  list -r PATTERN       List all songs in the record PATTERN.
+  list -a               List all artists.
+  list -a PATTERN       List all songs by the artist PATTERN.
+  list -p               List all playlists.
+  list -p PATTERN       List all songs in the playlist PATTERN.
+  list -g               List all genres.
+  list -g PATTERN       List all songs in the genre PATTERN.
+```
+Example: `am list -a In Rainbows` (not case-sensitive)
+
+Notes: 
+* Music.app does not need to be open or closed; it should launch itself silently when `list` is called
+* Only works on tracks saved to your Library (but they do not need to be downloaded)
 
 ### Play
 
@@ -47,28 +69,6 @@ Notes:
 * Music.app does not need to be open or closed; it should launch itself silently when `play` is called
 * Only works on tracks saved to your Library (but they do not need to be downloaded)
 * calling `-p Library` will result in quite a delay, unlike `-l`, because it requires copying all the songs in your library into the temporary playlist
-
-### List
-
-List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
-
-Usage: [function] [-grouping] [-name]
-```
-  list -s               List all songs in your library.
-  list -r               List all records.
-  list -r PATTERN       List all songs in the record PATTERN.
-  list -a               List all artists.
-  list -a PATTERN       List all songs by the artist PATTERN.
-  list -p               List all playlists.
-  list -p PATTERN       List all songs in the playlist PATTERN.
-  list -g               List all genres.
-  list -g PATTERN       List all songs in the genre PATTERN.
-```
-Example: `am list -a In Rainbows` (not case-sensitive)
-
-Notes: 
-* Music.app does not need to be open or closed; it should launch itself silently when `list` is called
-* Only works on tracks saved to your Library (but they do not need to be downloaded)
 
 ### Known Problems
 
