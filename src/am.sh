@@ -75,7 +75,6 @@ np(){
 			fi
 		fi
 	done
-	echo; echo "Usage: np.sh (Music.app track must be actively playing or paused; press s to toggle shuffle at any time)"
 }
 list(){
 	usage="Usage: list [-grouping] [-name]
