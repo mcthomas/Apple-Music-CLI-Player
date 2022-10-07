@@ -1,6 +1,6 @@
 # Apple Music TUI
 
-*Tested only on macOS 12 (likely to work on macOS 10.15, 11 as well).  Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
+*Tested on macOS 12 (likely to work on macOS 10.15, 11 as well). Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
 ## Now Playing (np)
 
@@ -42,6 +42,7 @@ Example: `am list -a In Rainbows` (not case-sensitive)
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `list` is called
 * Only works on tracks saved to your Library (but they do not need to be downloaded)
+* Remember to escape any special characters or punctuation if passing a title (or wrap the title in double quotes)
 
 ## Play
 
@@ -68,6 +69,7 @@ Example: `am play -a In Rainbows` (not case-sensitive)
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `play` is called
 * Only works on tracks saved to your Library (but they do not need to be downloaded)
+* Remember to escape any special characters or punctuation if passing a title (or wrap the title in double quotes)
 * calling `-p Library` will result in quite a delay, unlike `-l`, because it requires copying all the songs in your library into the temporary playlist
 
 ### Optional AirPlay Snippet (not in src)
