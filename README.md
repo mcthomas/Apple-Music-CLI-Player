@@ -1,6 +1,6 @@
 # Apple Music TUI
 
-*Tested only on macOS 12 (likely to work on macOS 10.15, 11 as well).  Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
+*Tested on macOS 12 (likely to work on macOS 10.15, 11). Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
 ## Now Playing (np)
 
@@ -25,7 +25,7 @@ Notes:
 
 List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
 
-Usage: [function] [-grouping] [-name]
+Usage: `[function] [-grouping] [-name]`
 ```
   list -s               List all songs in your library.
   list -r               List all records.
@@ -42,6 +42,7 @@ Example: `am list -a In Rainbows` (not case-sensitive)
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `list` is called
 * Only works on tracks saved to your Library (but they do not need to be downloaded)
+* Remember to escape any special characters or punctuation if passing a title (or wrap it in double quotes)
 
 ## Play
 
@@ -68,6 +69,7 @@ Example: `am play -a In Rainbows` (not case-sensitive)
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `play` is called
 * Only works on tracks saved to your Library (but they do not need to be downloaded)
+* Remember to escape any special characters or punctuation if passing a title (or wrap it in double quotes)
 * calling `-p Library` will result in quite a delay, unlike `-l`, because it requires copying all the songs in your library into the temporary playlist
 
 ### Optional AirPlay Snippet (not in src)
