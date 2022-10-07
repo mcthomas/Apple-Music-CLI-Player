@@ -4,7 +4,7 @@
 
 ### Now Playing (np)
 
-<img src="np.png" width="400"/>
+<img src="np.gif" width="400"/>
 
 Enjoy a simple "Now Playing" widget from your terminal.  Uses standard Unix tooling/piping, AppleScript for interfacing with Apple Music, and [Viu](https://github.com/atanunq/viu) for displaying the album art images.
 
