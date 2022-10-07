@@ -2,7 +2,7 @@
 
 *Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
-### Now Playing (np)
+## Now Playing (np)
 
 <img src="np.gif" width="400"/>
 
@@ -13,7 +13,7 @@ Dependencies: [Viu](https://github.com/atanunq/viu), [Doug's album-art.applescri
 Configuration: 
 
 * Place Doug's album-art.applescript at ~/Library/Scripts/album-art.applescript, or configure a valid path in the np() func of am.sh for wherever you decide to keep it
-* *Optional:* In the np() func of am.sh, adjust the `-h` dimension of the album art (look for the two calls to `viu`) to ensure a square appearance with your terminal emulator's line spacing
+* (Optional) In the np() func of am.sh, adjust the `-h` dimension of the album art (look for the two calls to `viu`) to ensure a square appearance with your terminal emulator's line spacing
 
 Usage: `am np` (pressing `s` at any time will toggle shuffle)
 
@@ -21,7 +21,7 @@ Notes:
 * A song must be actively playing or paused for it to launch
 * Scrubbing, pausing, resuming, as well as navigating forward and backward in the queue can already be accomplished with the special function keys / touch bar, so I did not see a good reason to map keys to additional AppleScript snippets as I did for toggling shuffle
 
-### List
+## List
 
 List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
 
@@ -43,7 +43,7 @@ Notes:
 * Music.app does not need to be open or closed; it should launch itself silently when `list` is called
 * Only works on tracks saved to your Library (but they do not need to be downloaded)
 
-### Play
+## Play
 
 Begin playback of different song groupings or a specific song grouping in your library. The song grouping type is dictated by the flag you pass.  By calling play without specifying a title after the flag, you are prompted to select a title of that flag's collection type on the fly via [fzf](https://github.com/junegunn/fzf). Unfortunately there is no simple way to play, for example, a specific album or songs from a specific artist with AppleScript, but I was able to modify code shared by a "jccc" [here](https://discussions.apple.com/thread/1053355), as a workaround which involves automatically creating a single temporary playlist in your library that is utilized by play().
 
@@ -78,5 +78,5 @@ Solution: Reboot. It seems to occur occasionally after having had Music.app open
 
 ### Ideas For Improvement
 
-* This could be expanded with functions that call new AppleScript snippets to create, delete, or refine playlists
+* am.sh could be expanded with functions that call new AppleScript snippets to create, delete, or refine playlists
 * See the Script Editor.app's dictionary API for an exhaustive reference of all the Music.app variables and functions that can be interfaced via AppleScript
