@@ -25,7 +25,7 @@ Notes:
 
 List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
 
-Usage: `[function] [-grouping] [-name]`
+Usage: `am list [-grouping] [-name]`
 ```
   list -s               List all songs in your library.
   list -r               List all records.
@@ -50,7 +50,7 @@ Begin playback of different song groupings or a specific song grouping in your l
 
 Dependencies: [fzf](https://github.com/junegunn/fzf) (unless you always play groupings by name)
 
-Usage: `am [function] [-grouping] [-name]`
+Usage: `am play [-grouping] [-name]`
 ```
   play -s               Fzf for a song and begin playback.
   play -s PATTERN       Play the song PATTERN.
@@ -102,5 +102,5 @@ Solution: Reboot. It seems to occur occasionally after having had Music.app open
 
 ### Ideas For Improvement
 
-* am.sh could be expanded with functions that call new AppleScript snippets to create, delete, or refine playlists
-* See the Script Editor.app's dictionary API for an exhaustive reference of all the Music.app variables and functions that can be interfaced via AppleScript
+* am.sh could be expanded with a function to call new AppleScript snippets to create, delete, or refine playlists
+* See the Script Editor.app's dictionary API (Music.sdef) for an exhaustive reference of all the Music.app variables and functions that can be interfaced via AppleScript
