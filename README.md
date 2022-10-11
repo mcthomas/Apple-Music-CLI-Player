@@ -25,7 +25,7 @@ Notes:
 
 List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
 
-Usage: `am list [-grouping] [-name]`
+Usage: `am list [-grouping] [name]`
 ```
   list -s               List all songs in your library.
   list -r               List all records.
@@ -50,7 +50,7 @@ Begin playback of different song groupings or a specific song grouping in your l
 
 Dependencies: [fzf](https://github.com/junegunn/fzf) (unless you always play groupings by name)
 
-Usage: `am play [-grouping] [-name]`
+Usage: `am play [-grouping] [name]`
 ```
   play -s               Fzf for a song and begin playback.
   play -s PATTERN       Play the song PATTERN.
@@ -81,7 +81,7 @@ Configuration:
 * Ideally adapt the argument name to match
 
 ```
-if [ $1 = "-atv" ]
+if [ $1 = "atv" ]
    then
     isActive=$(osascript -e 'tell application "Music" to get selected of AirPlay device "Apple TV"')
     if [ $isActive = 'false' ]
@@ -92,7 +92,7 @@ if [ $1 = "-atv" ]
   fi
 fi
 ```
-Example: `zsh ap.sh -atv`
+Example: `zsh ap.sh atv`
 
 ### Known Problems
 
