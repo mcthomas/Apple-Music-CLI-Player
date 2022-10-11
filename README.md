@@ -1,4 +1,4 @@
-# Apple Music TUI
+# Apple Music CLI Player
 
 *Tested on macOS 12 (likely to work on macOS 10.15, 11). Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
