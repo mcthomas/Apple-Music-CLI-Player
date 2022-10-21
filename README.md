@@ -15,11 +15,24 @@ Configuration:
 * Place Doug's album-art.applescript at ~/Library/Scripts/album-art.applescript, or configure a valid path in the np() func of am.sh for wherever you decide to keep it
 * (Optional) In the np() func of am.sh, adjust the `-h` dimension of the album art (look for the two calls to `viu`) to ensure a square appearance with your terminal emulator's line spacing
 
-Usage: `am np` (pressing `s` at any time will toggle shuffle)
+Usage: `am np` 
+```
+Keybindings:
+
+p                       Play / Pause
+f                       Forward one track
+b                       Backward one track
+>                       Begin fast forwarding current track
+<                       Begin rewinding current track
+R                       Resume normal playback
++                       Increase Music.app volume 5%
+-                       Decrease Music.app volume 5%
+s                       Toggle shuffle
+r                       Toggle song repeat
+```
 
 Notes: 
-* A song must be actively playing or paused for it to launch
-* Scrubbing, pausing, resuming, as well as navigating forward and backward in the queue can already be accomplished with the special function keys / touch bar, so I did not see a good reason to map keys to additional AppleScript snippets as I did for toggling shuffle
+* A song must be actively playing or paused for np to run
 
 ## List
 
@@ -102,5 +115,5 @@ Solution: Reboot. It seems to occur occasionally after having had Music.app open
 
 ### Ideas For Improvement
 
-* am.sh could be expanded with a function to call new AppleScript snippets to create, delete, or refine playlists
-* See the Script Editor.app's dictionary API (Music.sdef) for an exhaustive reference of all the Music.app variables and functions that can be interfaced via AppleScript
+* am.sh could be expanded with a function to call new AppleScript snippets to create, delete, or refine playlists; it would also be nice to be able to queue (as apposed to immediately play) a song or a group of songs, which is possible (though there is no native corresponding AppleScript function to accomplish this at present)
+* See the Script Editor.app's dictionary API (Music.sdef) for an exhaustive reference of all the native Music.app variables and functions that can be interfaced via AppleScript
