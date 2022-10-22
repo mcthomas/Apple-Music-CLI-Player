@@ -2,7 +2,7 @@
 
 *Tested on macOS 12 (likely to work on macOS 10.15, 11). Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
-**Goal:** Provide a simple command-line interface to listing out, playing songs from, and utilizing controls for Music.app.  I decided against using a library such as ncurses to build out a full TUI application, as I think it is preferable to interface via quick commands and with a light "widget".
+**Goal:** Provide a simple command-line interface to listing out, playing songs from, and utilizing controls for Music.app.  I decided against using a library such as ncurses to build a full TUI application, as I think it is preferable to interface via quick commands and with a light "widget".
 
 ## Now Playing (np)
 
