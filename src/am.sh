@@ -19,7 +19,8 @@ R                       Resume normal playback
 +                       Increase Music.app volume 5%
 -                       Decrease Music.app volume 5%
 s                       Toggle shuffle
-r                       Toggle song repeat"
+r                       Toggle song repeat
+?                       Show / hide keybindings"
 		duration=$(osascript -e 'tell application "Music" to get {player position} & {duration} of current track')
 		arr=(`echo ${duration}`)
 		curr=$(cut -d . -f 1 <<< ${arr[-2]})
@@ -310,7 +311,8 @@ usage="Usage: am.sh [function] [-grouping] [name]
   +                     Increase Music.app volume 5%
   -                     Decrease Music.app volume 5%
   s                     Toggle shuffle
-  r                     Toggle song repeat"
+  r                     Toggle song repeat
+  ?                     Show / hide keybindings"
 if [ "$#" -eq 0 ]; then
 	printf '%s\n' "$usage";
 else
