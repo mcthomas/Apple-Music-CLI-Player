@@ -18,6 +18,7 @@ Configuration:
 * (Optional) In the np() func of am.sh, adjust the `-h` dimension of the album art (look for the two calls to `viu`) to ensure a square appearance with your terminal emulator's line spacing
 
 Usage (aliased): `am np`
+
 Usage (not aliased): `bash am.sh np`
 ```
 Keybindings:
@@ -45,6 +46,7 @@ Notes:
 List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
 
 Usage (aliased): `am list [-grouping] [name]`
+
 Usage (not aliased): `bash am.sh list [-grouping] [name]`
 ```
   list -s               List all songs in your library.
@@ -71,6 +73,7 @@ Begin playback of different song groupings or a specific song grouping in your l
 Dependencies: [fzf](https://github.com/junegunn/fzf) (unless you always play groupings by name)
 
 Usage (aliased): `am play [-grouping] [name]`
+
 Usage (not aliased): `bash am.sh play [-grouping] [name]`
 ```
   play -s               Fzf for a song and begin playback.
