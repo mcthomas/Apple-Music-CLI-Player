@@ -1,12 +1,12 @@
-# Apple Music TUI
+# Apple Music CLI Player
 
 *Tested on macOS 12 (likely to work on macOS 10.15, 11). Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
 ## Now Playing (np)
 
-<img src="np.gif" width="400"/>
+<img src="np.png" width="600"/>
 
-Enjoy a simple "Now Playing" widget from your terminal.  Uses standard Unix tooling/piping, AppleScript for interfacing with Apple Music, and [Viu](https://github.com/atanunq/viu) for displaying the album art images.
+Enjoy a simple "Now Playing" widget from your terminal.  Uses standard Unix tooling/piping, AppleScript for interfacing with Apple Music, and [Viu](https://github.com/atanunq/viu) for displaying the album art images.  It also includes keyboard shortcut bindings for basic playback controls.  Apart from toggling shuffle, toggling repeat, and changing the Music.app-specific volume, the other controls are already accessible from the special Fn key functions/touch bar.  
 
 Dependencies: [Viu](https://github.com/atanunq/viu), [Doug's album-art.applescript](https://dougscripts.com/itunes/2014/10/save-current-tracks-artwork/)
 
@@ -15,17 +15,30 @@ Configuration:
 * Place Doug's album-art.applescript at ~/Library/Scripts/album-art.applescript, or configure a valid path in the np() func of am.sh for wherever you decide to keep it
 * (Optional) In the np() func of am.sh, adjust the `-h` dimension of the album art (look for the two calls to `viu`) to ensure a square appearance with your terminal emulator's line spacing
 
-Usage: `am np` (pressing `s` at any time will toggle shuffle)
+Usage: `am np` 
+```
+Keybindings:
+
+p                       Play / Pause
+f                       Forward one track
+b                       Backward one track
+>                       Begin fast forwarding current track
+<                       Begin rewinding current track
+R                       Resume normal playback
++                       Increase Music.app volume 5%
+-                       Decrease Music.app volume 5%
+s                       Toggle shuffle
+r                       Toggle song repeat
+```
 
 Notes: 
-* A song must be actively playing or paused for it to launch
-* Scrubbing, pausing, resuming, as well as navigating forward and backward in the queue can already be accomplished with the special function keys / touch bar, so I did not see a good reason to map keys to additional AppleScript snippets as I did for toggling shuffle
+* A song must be actively playing or paused for np to run
 
 ## List
 
 List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
 
-Usage: `[function] [-grouping] [-name]`
+Usage: `am list [-grouping] [name]`
 ```
   list -s               List all songs in your library.
   list -r               List all records.
@@ -50,7 +63,7 @@ Begin playback of different song groupings or a specific song grouping in your l
 
 Dependencies: [fzf](https://github.com/junegunn/fzf) (unless you always play groupings by name)
 
-Usage: `am [function] [-grouping] [-name]`
+Usage: `am play [-grouping] [name]`
 ```
   play -s               Fzf for a song and begin playback.
   play -s PATTERN       Play the song PATTERN.
@@ -81,7 +94,7 @@ Configuration:
 * Ideally adapt the argument name to match
 
 ```
-if [ $1 = "-atv" ]
+if [ $1 = "atv" ]
    then
     isActive=$(osascript -e 'tell application "Music" to get selected of AirPlay device "Apple TV"')
     if [ $isActive = 'false' ]
@@ -92,7 +105,7 @@ if [ $1 = "-atv" ]
   fi
 fi
 ```
-Example: `zsh ap.sh -atv`
+Example: `zsh ap.sh atv`
 
 ### Known Problems
 
@@ -102,5 +115,5 @@ Solution: Reboot. It seems to occur occasionally after having had Music.app open
 
 ### Ideas For Improvement
 
-* am.sh could be expanded with functions that call new AppleScript snippets to create, delete, or refine playlists
-* See the Script Editor.app's dictionary API for an exhaustive reference of all the Music.app variables and functions that can be interfaced via AppleScript
+* am.sh could be expanded with a function to call new AppleScript snippets to create, delete, or refine playlists; it would also be nice to be able to queue (as apposed to immediately play) a song or a group of songs, which is possible (though there is no native corresponding AppleScript function to accomplish this at present)
+* See the Script Editor.app's dictionary API (Music.sdef) for an exhaustive reference of all the native Music.app variables and functions that can be interfaced via AppleScript
