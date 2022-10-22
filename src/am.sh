@@ -1,10 +1,25 @@
 #!/bin/sh
 np(){
 	init=1
+	help='false'
 	while :
 	do
-		vol=$(osascript -e 'get volume settings')
+		vol=$(osascript -e 'tell application "Music" to get sound volume')
 		shuffle=$(osascript -e 'tell application "Music" to get shuffle enabled')
+		repeat=$(osascript -e 'tell application "Music" to get song repeat')
+	    keybindings="
+Keybindings:
+
+p                       Play / Pause
+f                       Forward one track
+b                       Backward one track
+>                       Begin fast forwarding current track
+<                       Begin rewinding current track
+R                       Resume normal playback
++                       Increase Music.app volume 5%
+-                       Decrease Music.app volume 5%
+s                       Toggle shuffle
+r                       Toggle song repeat"
 		duration=$(osascript -e 'tell application "Music" to get {player position} & {duration} of current track')
 		arr=(`echo ${duration}`)
 		curr=$(cut -d . -f 1 <<< ${arr[-2]})
@@ -46,7 +61,6 @@ np(){
 			magenta=$(echo -e '\033[01;35m')
 			nocolor=$(echo -e '\033[0m')
 		fi
-		vol=$(echo $(awk -F ':|,' '{print $2}' <<< $vol))
 		if [ $vol = 0 ]; then
 			volIcon=🔇
 		else
@@ -54,9 +68,16 @@ np(){
 		fi
 		vol=$(( vol / 12 ))
 		if [ $shuffle = 'false' ]; then
-			shuffleIcon=🔁
+			shuffleIcon='➡️ '
 		else
 			shuffleIcon=🔀
+		fi
+		if [ $repeat = 'off' ]; then
+			repeatIcon='↪️ '
+		elif [ $repeat = 'one' ]; then
+			repeatIcon=🔂
+		else
+			repeatIcon=🔁
 		fi
 		volBars='▁▂▃▄▅▆▇'
 		volBG=${volBars:$vol}
@@ -65,7 +86,10 @@ np(){
 		percentRemain=$(( (curr * 100) / end / 10 ))
 		progBG=${progressBars:$percentRemain}
 		prog=${progressBars:0:$percentRemain}
-		paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")")
+		paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $repeatIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")") 
+		if [ $help = 'true' ]; then
+			printf '%s\n' "$keybindings"
+		fi
 		input=$(bash -c "read -n 1 -t .5 input; echo \$input | xargs")
 		if [[ "${input}" == *"s"* ]]; then
 			if $shuffle ; then
@@ -73,11 +97,42 @@ np(){
 			else
 				osascript -e 'tell application "Music" to set shuffle enabled to true'
 			fi
+		elif [[ "${input}" == *"r"* ]]; then
+			if [ $repeat = 'off' ]; then
+				osascript -e 'tell application "Music" to set song repeat to all'
+			elif [ $repeat = 'all' ]; then
+				osascript -e 'tell application "Music" to set song repeat to one'
+			else
+				osascript -e 'tell application "Music" to set song repeat to off'
+			fi
+		elif [[ "${input}" == *"+"* ]]; then
+			osascript -e 'tell application "Music" to set sound volume to sound volume + 5'
+		elif [[ "${input}" == *"-"* ]]; then
+			osascript -e 'tell application "Music" to set sound volume to sound volume - 5'
+		elif [[ "${input}" == *">"* ]]; then
+			osascript -e 'tell application "Music" to fast forward'
+		elif [[ "${input}" == *"<"* ]]; then
+			osascript -e 'tell application "Music" to rewind'
+		elif [[ "${input}" == *"R"* ]]; then
+			osascript -e 'tell application "Music" to resume'
+		elif [[ "${input}" == *"f"* ]]; then
+			osascript -e 'tell app "Music" to play next track'
+		elif [[ "${input}" == *"b"* ]]; then
+			osascript -e 'tell app "Music" to back track'
+		elif [[ "${input}" == *"p"* ]]; then
+			osascript -e 'tell app "Music" to playpause'
+		elif [[ "${input}" == *"?"* ]]; then
+			if [ $help = 'false' ]; then
+				help='true'
+			else
+				help='false'
+			fi
 		fi
+		read -N 10000000 -t 0.001
 	done
 }
 list(){
-	usage="Usage: list [-grouping] [-name]
+	usage="Usage: list [-grouping] [name]
 
   -s                    List all songs.
   -r                    List all records.
@@ -142,7 +197,7 @@ list(){
 }
 
 play() {
-	usage="Usage: play [-grouping] [-name]
+	usage="Usage: play [-grouping] [name]
 
   -s                    Fzf for a song and begin playback.
   -s PATTERN            Play the song PATTERN.
@@ -216,7 +271,7 @@ play() {
 	fi
 }
 
-usage="Usage: am.sh [function] [-grouping] [-name]
+usage="Usage: am.sh [function] [-grouping] [name]
 
   list -s              	List all songs in your library.
   list -r              	List all records.
@@ -242,8 +297,20 @@ usage="Usage: am.sh [function] [-grouping] [-name]
   
   np                    Open the \"Now Playing\" TUI widget.
                         (Music.app track must be actively
-			playing or paused; press s to toggle
-			shuffle at any time)"
+			playing or paused)
+ 
+  np keybindings:
+
+  p                     Play / Pause
+  f                     Forward one track
+  b                     Backward one track
+  >                     Begin fast forwarding current track
+  <                     Begin rewinding current track
+  R                     Resume normal playback
+  +                     Increase Music.app volume 5%
+  -                     Decrease Music.app volume 5%
+  s                     Toggle shuffle
+  r                     Toggle song repeat"
 if [ "$#" -eq 0 ]; then
 	printf '%s\n' "$usage";
 else
