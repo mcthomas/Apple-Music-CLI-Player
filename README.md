@@ -4,9 +4,9 @@
 
 **Goal:** Provide a simple command-line interface to listing out, playing songs from, and utilizing controls for Music.app.  I decided against using a library such as ncurses to build a full TUI application, as I think it is preferable to interface via quick commands and a light "widget".
 
-## Now Playing (np)
-
 <img src="np.png" width="800"/>
+
+## Now Playing (np)
 
 Enjoy a simple "Now Playing" widget from your terminal.  Uses standard Unix tooling/piping, AppleScript for interfacing with Apple Music, and [Viu](https://github.com/atanunq/viu) for displaying the album art images.  It also includes keyboard shortcut bindings for basic playback controls.  Apart from toggling shuffle, toggling repeat, and changing the Music.app-specific volume, the other controls are already accessible from the special Fn key functions/touch bar.  
 
@@ -127,4 +127,5 @@ Solution: Reboot. It seems to occur occasionally after having had Music.app open
 ### Ideas For Improvement
 
 * am.sh could be expanded with a function to call new AppleScript snippets to create, delete, or refine playlists; it would also be nice to be able to queue (as apposed to immediately play) a song or a group of songs, which is possible (though there is no native corresponding AppleScript function to accomplish this at present)
+* This project could be forked and used in the backend to create a full client alternative to Music.app, though it would not be possible to browse for and save tracks outside of the user's library
 * See the Script Editor.app's dictionary API (Music.sdef) for an exhaustive reference of all the native Music.app variables and functions that can be interfaced via AppleScript
