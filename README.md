@@ -59,7 +59,7 @@ Usage (not aliased): `bash am.sh list [-grouping] [name]`
   list -g               List all genres.
   list -g PATTERN       List all songs in the genre PATTERN.
 ```
-Example: `am list -a In Rainbows` (not case-sensitive)
+Example: `am list -r In Rainbows` (not case-sensitive)
 
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `list` is called
@@ -88,7 +88,7 @@ Usage (not aliased): `bash am.sh play [-grouping] [name]`
   play -g PATTERN       Play from the genre PATTERN.
   play -l               Play from your entire library.
 ```
-Example: `am play -a In Rainbows` (not case-sensitive)
+Example: `am play -a Radiohead` (not case-sensitive)
 
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `play` is called
