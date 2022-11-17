@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 np(){
 	init=1
 	help='false'
