@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 np(){
 	init=1
 	help='false'
@@ -129,7 +129,7 @@ r                       Toggle song repeat
 				help='false'
 			fi
 		fi
-		bash read -N 10000000 -t 0.001
+		read -N 10000000 -t 0.001
 	done
 }
 list(){
