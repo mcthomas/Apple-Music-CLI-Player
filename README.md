@@ -1,6 +1,6 @@
 # Apple Music CLI Player
 
-*Tested on macOS 12 (likely to work on macOS 10.15, 11). Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
+*Tested on macOS 12 (likely to work on macOS 10.15, 11). Can be called with the system default zsh or with a modern bash package (not the system default bash version). I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
 **Goal:** Provide a simple command-line interface to listing out, playing songs from, and utilizing controls for Music.app.  I decided against using a library such as ncurses to build a full TUI application, as I think it is preferable to interface via quick commands and a light "widget".
 
@@ -19,7 +19,7 @@ Configuration:
 
 Usage (aliased): `am np`
 
-Usage (not aliased): `bash am.sh np`
+Usage (not aliased): `zsh am.sh np`
 ```
 Keybindings:
 
@@ -47,7 +47,7 @@ List out all song groupings of a specific type or all songs of a specific song g
 
 Usage (aliased): `am list [-grouping] [name]`
 
-Usage (not aliased): `bash am.sh list [-grouping] [name]`
+Usage (not aliased): `zsh am.sh list [-grouping] [name]`
 ```
   list -s               List all songs in your library.
   list -r               List all records.
@@ -74,7 +74,7 @@ Dependencies: [fzf](https://github.com/junegunn/fzf) (unless you always play gro
 
 Usage (aliased): `am play [-grouping] [name]`
 
-Usage (not aliased): `bash am.sh play [-grouping] [name]`
+Usage (not aliased): `zsh am.sh play [-grouping] [name]`
 ```
   play -s               Fzf for a song and begin playback.
   play -s PATTERN       Play the song PATTERN.
