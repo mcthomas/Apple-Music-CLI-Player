@@ -2,13 +2,11 @@
 
 *Tested on macOS 12 (likely to work on macOS 10.15, 11). Can be called with bash or zsh. I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .bashrc or .zshrc.*
 
-#### Goal
+**Goal:** Provide a simple command-line interface to listing out, playing songs from, and utilizing controls for Music.app.  I decided against using a library such as ncurses to build a full TUI application, as I think it is preferable to interface via quick commands and a light "widget".
 
-Provide a simple command-line interface to listing out, playing songs from, and utilizing controls for Music.app.  I decided against using a library such as ncurses to build out a full TUI application, as I think it is preferable to interface via quick commands and with a light "widget".
+<img src="np.png" width="800"/>
 
 ## Now Playing (np)
-
-<img src="np.png" width="600"/>
 
 Enjoy a simple "Now Playing" widget from your terminal.  Uses standard Unix tooling/piping, AppleScript for interfacing with Apple Music, and [Viu](https://github.com/atanunq/viu) for displaying the album art images.  It also includes keyboard shortcut bindings for basic playback controls.  Apart from toggling shuffle, toggling repeat, and changing the Music.app-specific volume, the other controls are already accessible from the special Fn key functions/touch bar.  
 
@@ -19,7 +17,9 @@ Configuration:
 * Place album-art.applescript at ~/Library/Scripts/album-art.applescript, or configure a valid path in the np() func of am.sh for wherever you decide to keep it
 * (Optional) In the np() func of am.sh, adjust the `-h` dimension of the album art (look for the two calls to `viu`) to ensure a square appearance with your terminal emulator's line spacing
 
-Usage: `am np` 
+Usage (aliased): `am np`
+
+Usage (not aliased): `bash am.sh np`
 ```
 Keybindings:
 
@@ -33,17 +33,21 @@ R                       Resume normal playback
 -                       Decrease Music.app volume 5%
 s                       Toggle shuffle
 r                       Toggle song repeat
+?                       Show / hide keybindings
 ```
 
 Notes: 
 * A song must be actively playing or paused for np to run
+* Attempting to play the previous track with an empty queue will kill the script
 * album-art.applescript is a modified version of [this script,](https://dougscripts.com/itunes/2014/10/save-current-tracks-artwork/) written by AppleScript wizard [Doug Adams](https://dougscripts.com/itunes/faq_cont.php)♡
 
 ## List
 
 List out all song groupings of a specific type or all songs of a specific song grouping in your library.  The song grouping type is dictated by the flag you pass. By calling list without specifying a title after the flag, you will see a printout of all the titles of that flag's collection type. 
 
-Usage: `am list [-grouping] [name]`
+Usage (aliased): `am list [-grouping] [name]`
+
+Usage (not aliased): `bash am.sh list [-grouping] [name]`
 ```
   list -s               List all songs in your library.
   list -r               List all records.
@@ -55,7 +59,7 @@ Usage: `am list [-grouping] [name]`
   list -g               List all genres.
   list -g PATTERN       List all songs in the genre PATTERN.
 ```
-Example: `am list -a In Rainbows` (not case-sensitive)
+Example: `am list -r In Rainbows` (not case-sensitive)
 
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `list` is called
@@ -68,7 +72,9 @@ Begin playback of different song groupings or a specific song grouping in your l
 
 Dependencies: [fzf](https://github.com/junegunn/fzf) (unless you always play groupings by name)
 
-Usage: `am play [-grouping] [name]`
+Usage (aliased): `am play [-grouping] [name]`
+
+Usage (not aliased): `bash am.sh play [-grouping] [name]`
 ```
   play -s               Fzf for a song and begin playback.
   play -s PATTERN       Play the song PATTERN.
@@ -82,7 +88,7 @@ Usage: `am play [-grouping] [name]`
   play -g PATTERN       Play from the genre PATTERN.
   play -l               Play from your entire library.
 ```
-Example: `am play -a In Rainbows` (not case-sensitive)
+Example: `am play -a Radiohead` (not case-sensitive)
 
 Notes: 
 * Music.app does not need to be open or closed; it should launch itself silently when `play` is called
@@ -121,4 +127,5 @@ Solution: Reboot. It seems to occur occasionally after having had Music.app open
 ### Ideas For Improvement
 
 * am.sh could be expanded with a function to call new AppleScript snippets to create, delete, or refine playlists; it would also be nice to be able to queue (as apposed to immediately play) a song or a group of songs, which is possible (though there is no native corresponding AppleScript function to accomplish this at present)
+* This project could be forked and used in the backend to create a full client alternative to Music.app, though it would not be possible to browse for and save tracks outside of the user's library
 * See the Script Editor.app's dictionary API (Music.sdef) for an exhaustive reference of all the native Music.app variables and functions that can be interfaced via AppleScript
