@@ -54,9 +54,9 @@ r                       Toggle song repeat
 			rm ~/Library/Scripts/tmp*
 			osascript ~/Library/Scripts/album-art.applescript
 			if [ -f ~/Library/Scripts/tmp.png ]; then
-				art=$(clear; viu ~/Library/Scripts/tmp.png -w 39 -h 15)
+				art=$(clear; viu -b ~/Library/Scripts/tmp.png -w 39 -h 15)
 			else
-				art=$(clear; viu ~/Library/Scripts/tmp.jpg -w 39 -h 15)
+				art=$(clear; viu -b ~/Library/Scripts/tmp.jpg -w 39 -h 15)
 			fi
 			cyan=$(echo -e '\e[00;36m')
 			magenta=$(echo -e '\033[01;35m')
