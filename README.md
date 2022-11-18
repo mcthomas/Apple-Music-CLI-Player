@@ -1,6 +1,6 @@
 # Apple Music CLI Player
 
-*Tested on macOS 12 (likely to work on macOS 10.15, 11). **Can be called with the system default zsh or with a modern bash package (not the system default bash version).** I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .zshrc.*
+*Tested on macOS 12 (likely to work on macOS 10.15, 11). **Can be called with the system default zsh.** I recommend aliasing am.sh to `alias am=zsh path/to/am.sh`, or moving its three individual functions into your .zshrc.*
 
 **Goal:** Provide a simple command-line interface to listing out, playing songs from, and utilizing controls for Music.app.  I decided against using a library such as ncurses to build a full TUI application, as I think it is preferable to interface via quick commands and a light "widget".
 
@@ -120,9 +120,10 @@ Example: `zsh ap.sh atv`
 
 ### Known Problems
 
-Error: `execution error: Music got an error: Application isn’t running. (-600)`
-
-Solution: Reboot. It seems to occur occasionally after having had Music.app open for too long while your Mac has slept. Other potential solutions can be found [here](https://stackoverflow.com/questions/19957268/applescript-fails-with-error-600-when-launched-over-ssh-on-mavericks)
+- Error: `execution error: Music got an error: Application isn’t running. (-600)`
+  - Solution: Reboot. It seems to occur occasionally after having had Music.app open for too long while your Mac has slept. Other potential solutions can be found [here](https://stackoverflow.com/questions/19957268/applescript-fails-with-error-600-when-launched-over-ssh-on-mavericks)
+- Blinking for each output refresh when running np()
+  - Consider using a lighter-weight terminal emulator, or even Terminal.app, where this doesn't seem to occur. I am not sure how to mitigate this for heavier terminal emulators such as iTerm2
 
 ### Ideas For Improvement
 
