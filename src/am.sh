@@ -129,7 +129,7 @@ r                       Toggle song repeat
 				help='false'
 			fi
 		fi
-		read -k 10000000 -t 0.001
+		read -sk 1 -t 0.001
 	done
 }
 list(){
