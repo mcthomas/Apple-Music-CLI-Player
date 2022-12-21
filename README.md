@@ -23,8 +23,8 @@ Usage (not aliased): `zsh am.sh np`
 ```
 np                      Open the "Now Playing" TUI widget.
                         (Music.app track must be actively
-			                  playing or paused)
-np -t			              Open in text mode (disables album art)
+			playing or paused)
+np -t			Open in text mode (disables album art)
 
 Keybindings:
 
