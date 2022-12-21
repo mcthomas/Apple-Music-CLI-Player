@@ -54,9 +54,9 @@ r                       Toggle song repeat
 			rm ~/Library/Scripts/tmp*
 			osascript ~/Library/Scripts/album-art.applescript
 			if [ -f ~/Library/Scripts/tmp.png ]; then
-				art=$(clear; viu -b ~/Library/Scripts/tmp.png -w 39 -h 15)
+				art=$(clear; viu -b ~/Library/Scripts/tmp.png -w 31 -h 14)
 			else
-				art=$(clear; viu -b ~/Library/Scripts/tmp.jpg -w 39 -h 15)
+				art=$(clear; viu -b ~/Library/Scripts/tmp.jpg -w 31 -h 14)
 			fi
 			cyan=$(echo -e '\e[00;36m')
 			magenta=$(echo -e '\033[01;35m')
@@ -92,7 +92,7 @@ r                       Toggle song repeat
 			clear
 			paste <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $repeatIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")") 
 		else
-			paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $repeatIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")") 
+			paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $repeatIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")") 
 		fi
 		if [ $help = 'true' ]; then
 			printf '%s\n' "$keybindings"
