@@ -21,6 +21,11 @@ Usage (aliased): `am np`
 
 Usage (not aliased): `zsh am.sh np`
 ```
+np                      Open the "Now Playing" TUI widget.
+                        (Music.app track must be actively
+			                  playing or paused)
+np -t			              Open in text mode (disables album art)
+
 Keybindings:
 
 p                       Play / Pause
@@ -37,7 +42,6 @@ r                       Toggle song repeat
 ```
 
 Notes: 
-* A song must be actively playing or paused for np to run
 * Attempting to play the previous track with an empty queue will kill the script
 * album-art.applescript is a modified version of [this script,](https://dougscripts.com/itunes/2014/10/save-current-tracks-artwork/) written by AppleScript wizard [Doug Adams](https://dougscripts.com/itunes/faq_cont.php)♡
 
