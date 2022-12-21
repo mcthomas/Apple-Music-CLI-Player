@@ -87,7 +87,13 @@ r                       Toggle song repeat
 		percentRemain=$(( (curr * 100) / end / 10 ))
 		progBG=${progressBars:$percentRemain}
 		prog=${progressBars:0:$percentRemain}
-		paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $repeatIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")") 
+		if [ "$1" = "-t" ]
+		then
+			clear
+			paste <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $repeatIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")") 
+		else
+			paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $repeatIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")") 
+		fi
 		if [ $help = 'true' ]; then
 			printf '%s\n' "$keybindings"
 		fi
@@ -299,6 +305,7 @@ usage="Usage: am.sh [function] [-grouping] [name]
   np                    Open the \"Now Playing\" TUI widget.
                         (Music.app track must be actively
 			playing or paused)
+  np -t			Open in text mode (disables album art)
  
   np keybindings:
 
@@ -318,7 +325,8 @@ if [ "$#" -eq 0 ]; then
 else
 	if [ $1 = "np" ]
 	then
-		np
+		shift
+		np "$@"
 	elif [ $1 = "list" ]
 	then
 		shift
