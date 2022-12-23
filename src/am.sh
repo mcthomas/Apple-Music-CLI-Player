@@ -100,7 +100,7 @@ r                       Toggle song repeat
 		if [ $help = 'true' ]; then
 			printf '%s\n' "$keybindings"
 		fi
-		input=$(/bin/zsh -c "read -n 1 -t .5 input; echo \$input | xargs")
+		input=$(/bin/bash -c "read -n 1 -t 1 input; echo \$input | xargs")
 		if [[ "${input}" == *"s"* ]]; then
 			if $shuffle ; then
 				osascript -e 'tell application "Music" to set shuffle enabled to false'
