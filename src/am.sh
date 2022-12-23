@@ -51,12 +51,15 @@ r                       Toggle song repeat
 			then
 				endSec="0$endSec"
 			fi
-			rm ~/Library/Scripts/tmp*
-			osascript ~/Library/Scripts/album-art.applescript
-			if [ -f ~/Library/Scripts/tmp.png ]; then
-				art=$(clear; viu -b ~/Library/Scripts/tmp.png -w 31 -h 14)
-			else
-				art=$(clear; viu -b ~/Library/Scripts/tmp.jpg -w 31 -h 14)
+			if [ "$1" != "-t" ]
+			then
+				rm ~/Library/Scripts/tmp*
+				osascript ~/Library/Scripts/album-art.applescript
+				if [ -f ~/Library/Scripts/tmp.png ]; then
+					art=$(clear; viu -b ~/Library/Scripts/tmp.png -w 31 -h 14)
+				else
+					art=$(clear; viu -b ~/Library/Scripts/tmp.jpg -w 31 -h 14)
+				fi
 			fi
 			cyan=$(echo -e '\e[00;36m')
 			magenta=$(echo -e '\033[01;35m')
@@ -97,7 +100,7 @@ r                       Toggle song repeat
 		if [ $help = 'true' ]; then
 			printf '%s\n' "$keybindings"
 		fi
-		input=$(bash -c "read -n 1 -t .5 input; echo \$input | xargs")
+		input=$(/bin/zsh -c "read -n 1 -t .5 input; echo \$input | xargs")
 		if [[ "${input}" == *"s"* ]]; then
 			if $shuffle ; then
 				osascript -e 'tell application "Music" to set shuffle enabled to false'
