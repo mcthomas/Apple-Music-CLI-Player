@@ -10,7 +10,7 @@
 
 Enjoy a simple "Now Playing" widget from your terminal.  Uses standard Unix tooling/piping, AppleScript for interfacing with Apple Music, and [Viu](https://github.com/atanunq/viu) for displaying the album art images.  It also includes keyboard shortcut bindings for basic playback controls.  Apart from toggling shuffle, toggling repeat, and changing the Music.app-specific volume, the other controls are already accessible from the special Fn key functions/touch bar.  
 
-Dependencies: [Viu](https://github.com/atanunq/viu)
+Dependencies: [Viu](https://github.com/atanunq/viu) (unless you always use text mode)
 
 Configuration: 
 
