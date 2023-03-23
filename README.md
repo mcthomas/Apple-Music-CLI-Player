@@ -21,24 +21,26 @@ Usage (aliased): `am np`
 
 Usage (not aliased): `zsh am.sh np`
 ```
-np                      Open the "Now Playing" TUI widget.
-                        (Music.app track must be actively
-			playing or paused)
-np -t			Open in text mode (disables album art)
+np                    Open the "Now Playing" TUI widget.
+                      (Music.app track must be actively
+		      playing or paused)
+np -t		      Open in text mode (disables album art)
 
-Keybindings:
+np keybindings:
 
-p                       Play / Pause
-f                       Forward one track
-b                       Backward one track
->                       Begin fast forwarding current track
-<                       Begin rewinding current track
-R                       Resume normal playback
-+                       Increase Music.app volume 5%
--                       Decrease Music.app volume 5%
-s                       Toggle shuffle
-r                       Toggle song repeat
-?                       Show / hide keybindings
+p                     Play / Pause
+f                     Forward one track
+b                     Backward one track
+>                     Begin fast forwarding current track
+<                     Begin rewinding current track
+R                     Resume normal playback
++                     Increase Music.app volume 5%
+-                     Decrease Music.app volume 5%
+s                     Toggle shuffle
+r                     Toggle song repeat
+q                     Quit np
+Q                     Quit np and Music.app
+?                     Show / hide keybindings
 ```
 
 Notes: 
@@ -53,15 +55,15 @@ Usage (aliased): `am list [-grouping] [name]`
 
 Usage (not aliased): `zsh am.sh list [-grouping] [name]`
 ```
-  list -s               List all songs in your library.
-  list -r               List all records.
-  list -r PATTERN       List all songs in the record PATTERN.
-  list -a               List all artists.
-  list -a PATTERN       List all songs by the artist PATTERN.
-  list -p               List all playlists.
-  list -p PATTERN       List all songs in the playlist PATTERN.
-  list -g               List all genres.
-  list -g PATTERN       List all songs in the genre PATTERN.
+list -s               List all songs in your library.
+list -r               List all records.
+list -r PATTERN       List all songs in the record PATTERN.
+list -a               List all artists.
+list -a PATTERN       List all songs by the artist PATTERN.
+list -p               List all playlists.
+list -p PATTERN       List all songs in the playlist PATTERN.
+list -g               List all genres.
+list -g PATTERN       List all songs in the genre PATTERN.
 ```
 Example: `am list -r In Rainbows` (not case-sensitive)
 
@@ -80,17 +82,17 @@ Usage (aliased): `am play [-grouping] [name]`
 
 Usage (not aliased): `zsh am.sh play [-grouping] [name]`
 ```
-  play -s               Fzf for a song and begin playback.
-  play -s PATTERN       Play the song PATTERN.
-  play -r               Fzf for a record and begin playback.
-  play -r PATTERN       Play from the record PATTERN.
-  play -a               Fzf for an artist and begin playback.
-  play -a PATTERN       Play from the artist PATTERN.
-  play -p               Fzf for a playlist and begin playback.
-  play -p PATTERN       Play from the playlist PATTERN.
-  play -g               Fzf for a genre and begin playback.
-  play -g PATTERN       Play from the genre PATTERN.
-  play -l               Play from your entire library.
+play -s               Fzf for a song and begin playback.
+play -s PATTERN       Play the song PATTERN.
+play -r               Fzf for a record and begin playback.
+play -r PATTERN       Play from the record PATTERN.
+play -a               Fzf for an artist and begin playback.
+play -a PATTERN       Play from the artist PATTERN.
+play -p               Fzf for a playlist and begin playback.
+play -p PATTERN       Play from the playlist PATTERN.
+play -g               Fzf for a genre and begin playback.
+play -g PATTERN       Play from the genre PATTERN.
+play -l               Play from your entire library.
 ```
 Example: `am play -a Radiohead` (not case-sensitive)
 

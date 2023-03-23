@@ -20,6 +20,8 @@ R                       Resume normal playback
 -                       Decrease Music.app volume 5%
 s                       Toggle shuffle
 r                       Toggle song repeat
+q                       Quit np
+Q                       Quit np and Music.app
 ?                       Show / hide keybindings"
 		duration=$(osascript -e 'tell application "Music" to get {player position} & {duration} of current track')
 		arr=(`echo ${duration}`)
@@ -131,6 +133,13 @@ r                       Toggle song repeat
 			osascript -e 'tell app "Music" to back track'
 		elif [[ "${input}" == *"p"* ]]; then
 			osascript -e 'tell app "Music" to playpause'
+		elif [[ "${input}" == *"q"* ]]; then
+			clear
+			exit
+		elif [[ "${input}" == *"Q" ]]; then
+			killall Music
+			clear
+			exit
 		elif [[ "${input}" == *"?"* ]]; then
 			if [ $help = 'false' ]; then
 				help='true'
@@ -322,6 +331,8 @@ usage="Usage: am.sh [function] [-grouping] [name]
   -                     Decrease Music.app volume 5%
   s                     Toggle shuffle
   r                     Toggle song repeat
+  q                     Quit np
+  Q                     Quit np and Music.app
   ?                     Show / hide keybindings"
 if [ "$#" -eq 0 ]; then
 	printf '%s\n' "$usage";
