@@ -1,5 +1,9 @@
 #!/bin/zsh
 np(){
+	# clear the screen first
+	clear
+  # hide the cursor (as we will later use this refresh the screen)
+  printf '\e[?25l'
 	init=1
 	help='false'
 	while :
@@ -94,7 +98,11 @@ Q                       Quit np and Music.app
 		prog=${progressBars:0:$percentRemain}
 		if [ "$1" = "-t" ]
 		then
-			clear
+			
+			# Move the cursor to the top of the screen
+		  # (instead of clearing to avoid flickering)
+	    printf '\033[;H'       
+
 			paste <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $repeatIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")") 
 		else
 			paste <(printf %s "$art") <(printf %s "") <(printf %s "") <(printf %s "") <(printf '%s\n' "$name" "$artist - $record" "$shuffleIcon $repeatIcon $(echo $currMin:$currSec ${cyan}${prog}${nocolor}${progBG} $endMin:$endSec)" "$volIcon $(echo "${magenta}$vol${nocolor}$volBG")") 
